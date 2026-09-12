@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
 import { env } from "./config/env.js";
+import authRoutes from "./routes/auth.routes.js";
 
 import { notFoundHandler, errorHandler } from "./middleware/error.middleware.js";
 
@@ -21,6 +22,8 @@ export function createApp() {
     }
 
     app.get("/health", (req, res) => res.json({ status: "ok" }));
+
+    app.use("/api/v1/auth", authRoutes);
 
     app.use(notFoundHandler);
     app.use(errorHandler);
