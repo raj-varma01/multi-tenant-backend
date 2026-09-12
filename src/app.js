@@ -6,6 +6,9 @@ import cookieParser from "cookie-parser";
 
 import { env } from "./config/env.js";
 
+import { notFoundHandler, errorHandler } from "./middleware/error.middleware.js";
+
+
 export function createApp() {
     const app = express();
 
@@ -18,6 +21,9 @@ export function createApp() {
     }
 
     app.get("/health", (req, res) => res.json({ status: "ok" }));
+
+    app.use(notFoundHandler);
+    app.use(errorHandler);
 
     return app;
 }
