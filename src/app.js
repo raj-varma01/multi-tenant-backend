@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import { env } from "./config/env.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import fileRoutes from "./routes/file.routes.js";
 
 import { notFoundHandler, errorHandler } from "./middleware/error.middleware.js";
 
@@ -26,6 +27,7 @@ export function createApp() {
 
     app.use("/api/v1/auth", authRoutes);
     app.use("/api/v1/users", userRoutes);
+    app.use("/api/v1/files", fileRoutes);
 
     app.use(notFoundHandler);
     app.use(errorHandler);
