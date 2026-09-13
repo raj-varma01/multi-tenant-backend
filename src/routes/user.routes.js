@@ -9,5 +9,7 @@ const router = Router();
 router.use(authenticate, tenantMiddleware);
 
 router.get("/", requireRole("owner", "admin"), userController.listUsers);
+router.post("/invite", requireRole("owner", "admin"), userController.inviteUser);
+router.patch("/:id/role", requireRole("owner"), userController.changeUserRole);
 
 export default router;
